@@ -13,17 +13,22 @@ import {
 } from "./styles";
 import { useMutation, useQueryClient } from "react-query";
 import { loginUser } from "../../api/api";
+import { useNavigate } from "react-router";
 
 function Login() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
 
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const mutation = useMutation(loginUser, {
     onSuccess: (data) => {
       console.log("data", data);
       queryClient.invalidateQueries("user");
+      navigate("/main");
+    },
+    onError: () => {
+      alert("로그인 정보가 일치하지 않습니다");
     },
   });
 
@@ -44,7 +49,9 @@ function Login() {
     };
     mutation.mutate(loginUser);
   };
-
+  const gotoSignUp = () => {
+    navigate("/sign");
+  };
   return (
     <MainContainer>
       <StyledDiv>
@@ -60,7 +67,7 @@ function Login() {
             />
 
             <LabledInput
-              id="userId"
+              id="userPw"
               label="비밀번호"
               placeholder="비밀번호를 입력해주세요."
               value={userPw}
@@ -71,7 +78,7 @@ function Login() {
 
             <DivContainer>
               <span>아직 회원 아님?</span>
-              <span>회원가입</span>
+              <span onClick={gotoSignUp}>회원가입</span>
             </DivContainer>
           </FormContainer>
         </form>

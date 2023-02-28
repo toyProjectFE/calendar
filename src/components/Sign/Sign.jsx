@@ -23,6 +23,9 @@ function Sign() {
       console.log("data", data);
       queryClient.invalidateQueries("user");
     },
+    onError: () => {
+      alert("중복된 아이디입니다");
+    },
   });
   const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState("");

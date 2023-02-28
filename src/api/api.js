@@ -2,10 +2,14 @@ import axios from "axios";
 
 //조회 디테일
 const getDetail = async () => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SERVER_URL}/schedule`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/schedule`,
+    );
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 //생성 디테일
@@ -19,7 +23,7 @@ const swichSchedule = async (payload) => {
     `${process.env.REACT_APP_SERVER_URL}/schedule/${payload.id}`,
     {
       complete: payload.complete,
-    }
+    },
   );
 };
 
