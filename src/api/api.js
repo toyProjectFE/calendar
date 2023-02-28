@@ -24,13 +24,36 @@ const swichSchedule = async (payload) => {
 };
 
 //로그인
-
 const addUser = async (newUser) => {
-  await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/signup`, newUser);
+  //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/signup`, newUser);
+
+  await accessClient.post(
+    `${process.env.REACT_APP_SERVER_URL}/user/signup`,
+    newUser
+  );
 };
 
 const loginUser = async (newUser) => {
-  await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/login`, newUser);
+  //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/login`, newUser);
+  //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/login`, newUser);
+
+  const response = await axios.post(
+    `${process.env.REACT_APP_SERVER_URL}/user/login`,
+    // `${process.env.REACT_APP_SERVER_URL}/user/login`,
+    newUser
+  );
+  const accessToken = response.headers["authorization"];
+
+  localStorage.setItem("token", accessToken);
+  console.log(accessToken);
 };
+
+//인증이 필요한 통신할때 사용
+const accessClient = axios.create({
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/`,
+  headers: {
+    Authorization: `${localStorage.getItem("token")} `,
+  },
+});
 
 export { swichSchedule, getDetail, addSchedule, loginUser, addUser };
