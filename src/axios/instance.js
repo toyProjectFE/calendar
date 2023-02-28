@@ -1,16 +1,13 @@
 import axios from "axios";
 import { getCookie } from "./cookies";
 
-
-const access_token = getCookie("ACCESS_TOKEN");
+// const access_token = getCookie("ACCESS_TOKEN");
 const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
-  headers: {
-   Authorization: access_token
-   // "Access-Control-Allow-Origin": "*",
-  },
+  // headers: {
+  //  Authorization: access_token
+  // },
   // headers: { Authorization: accessToken },
-
 });
 
 // 권한이 필요없는 페이지일 경우  ex) Main page

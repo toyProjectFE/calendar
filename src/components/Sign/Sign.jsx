@@ -14,17 +14,24 @@ import {
 
 import { useMutation, useQueryClient } from "react-query";
 import { addUser } from "../../api/api";
+import { useNavigate } from "react-router";
 
 function Sign() {
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const mutation = useMutation(addUser, {
-    onSuccess: (data) => {
-      console.log("data", data);
+    onSuccess: (response) => {
+      alert(response.data.msg);
       queryClient.invalidateQueries("user");
+      navigate("/");
     },
-    onError: () => {
-      alert("중복된 아이디입니다");
+    onError: (response) => {
+      console.log("data", response.response.data.msg);
+      alert(response.data.msg);
+      setUserId("");
+      setUserName("");
+      setUserPw("");
+      setUserPwCheck("");
     },
   });
   const [userId, setUserId] = useState("");

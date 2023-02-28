@@ -7,8 +7,8 @@ const getDetail = async () => {
       `${process.env.REACT_APP_SERVER_URL}/schedule`,
     );
     return response.data;
-  } catch (e) {
-    console.log(e);
+  } catch {
+    // console.log(e);
   }
 };
 
@@ -30,7 +30,7 @@ const swichSchedule = async (payload) => {
 //로그인
 
 const addUser = async (newUser) => {
-  await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/signup`, newUser);
+  return axios.post(`${process.env.REACT_APP_SERVER_URL}/user/signup`, newUser);
 };
 
 const loginUser = async (newUser) => {

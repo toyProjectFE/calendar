@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useParams } from 'react-router';
+import { useParams } from "react-router";
 import { swichSchedule, getDetail, delSchedule } from "../../axios/api";
-import Card from './Card';
+import Card from "./Card";
 
 import {
   Allbox,
@@ -13,15 +13,8 @@ import {
   Btnbox,
 } from "./style";
 
-
-
 function Detailleftbox() {
-  // const schedule = useSelector((state) => {
-  //   console.log(state.cal.schedule);
-  //   return state.cal.schedule;
-
-  // });
-  
+  const { id } = useParams();
   const queryClient = useQueryClient();
   const swichmurarion = useMutation(swichSchedule, {
     onSuccess: () => {
@@ -44,19 +37,22 @@ function Detailleftbox() {
       id: id,
       complete: !complete,
     };
-    
+
     swichmurarion.mutate(swichbtn);
   };
   const [openTab, setOpentab] = useState(1);
-  const { isLoading, isError, data } = useQuery("schedule", getDetail);
-  //console.log(data)
+  const { isLoading, isError, data } = useQuery("schedule", () =>
+    getDetail(id),
+  );
+
+  console.log(data);
   if (isLoading) {
     return <h1>"성공했습니다!"</h1>;
   }
   if (isError) {
     return <h1>"오류입니다!"</h1>;
   }
-  
+
   const delBtn = (id) => {
     if (window.confirm("삭제하시겠습니까?")) {
       Delmurarion.mutate(id);
@@ -159,4 +155,4 @@ function Detailleftbox() {
   );
 }
 
-export default Detailleftbox
+export default Detailleftbox;

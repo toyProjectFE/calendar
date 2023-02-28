@@ -22,12 +22,13 @@ function Login() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const mutation = useMutation(loginUser, {
-    onSuccess: (data) => {
-      console.log("data", data);
+    onSuccess: (response) => {
+      // console.log("data", response.data.msg);
       queryClient.invalidateQueries("user");
       navigate("/main");
     },
-    onError: () => {
+    onError: (response) => {
+      // console.log("data", response.data.msg);
       alert("로그인 정보가 일치하지 않습니다");
     },
   });
