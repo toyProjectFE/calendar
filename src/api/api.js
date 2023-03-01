@@ -2,10 +2,14 @@ import axios from "axios";
 
 //조회 디테일
 const getDetail = async () => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SERVER_URL}/schedule`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/schedule`,
+    );
+    return response.data;
+  } catch {
+    // console.log(e);
+  }
 };
 
 //생성 디테일
@@ -19,14 +23,14 @@ const swichSchedule = async (payload) => {
     `${process.env.REACT_APP_SERVER_URL}/schedule/${payload.id}`,
     {
       complete: payload.complete,
-    }
+    },
   );
 };
 
 //로그인
 
 const addUser = async (newUser) => {
-  await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/signup`, newUser);
+  return axios.post(`${process.env.REACT_APP_SERVER_URL}/user/signup`, newUser);
 };
 
 const loginUser = async (newUser) => {

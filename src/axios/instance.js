@@ -1,18 +1,13 @@
 import axios from "axios";
 import { getCookie } from "./cookies";
 
-
-// axios instance  생성 세션이랑 협업세션
-// const ACCESS_TOKEN = await.axios.get()
-// const accessToken = getCookie(ACCESS_TOKEN);
-// const accessToken = localStorage.setItem("token");
+// const access_token = getCookie("ACCESS_TOKEN");
 const instance = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/date`,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-  },
+  baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+  // headers: {
+  //  Authorization: access_token
+  // },
   // headers: { Authorization: accessToken },
-
 });
 
 // 권한이 필요없는 페이지일 경우  ex) Main page
@@ -41,19 +36,20 @@ const instance = axios.create({
 //   },
 // );
 // instance.interceptors.response.use(
-//   //서버로부터 정상 응답을 받는 경우
-//   function (response) {
-//     console.log("데이터 수신 완료");
-//     return response;
-//   },
+// //서버로부터 정상 응답을 받는 경우
+// function (response) {
+// console.log("데이터 수신 완료");
+// return response;
+// },
 
-//   //서버로부터 오류 응답을 받은 경우
-//   //권한처리는 맞는데.... 권한이 필요없는곳에서의 control??
-//   function (error) {
-//     if (error.response.status === 401) {
-//       window.alert("인증이 필요합니다. 다시 로그인 하세요.");
-//     }
-//     return Promise.reject(error);
-//   },
+// //서버로부터 오류 응답을 받은 경우
+// //권한처리는 맞는데.... 권한이 필요없는곳에서의 control??
+// function (error) {
+// if (error.response.status === 401) {
+// window.alert("인증이 필요합니다. 다시 로그인 하세요.");
+// }
+// return Promise.reject(error);
+// },
+
 // );
 export default instance;

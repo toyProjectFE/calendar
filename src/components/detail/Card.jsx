@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
-import { Content, Title, Button, Bottom, Allboxli, Modalbg } from "./style";
-function Card({ state, swichhander }) {
+import React, { useState } from "react";
+import { Content, Title, Button, Allboxli } from "./style";
+import Modal from "./Modal";
+function Card({ state, swichhander, delBtn }) {
   const [ModalOpen, setModalOpen] = useState(false);
   const ModalButton = (id) => {
     setModalOpen(id);
   };
+  const closeBtn = () => {
+    setModalOpen(false);
+  };
+
+  // fatchBtn, cancelBtn, retouchBtn;
   return (
     <Allboxli key={state.id}>
       <Button onClick={() => swichhander(state.id, state.complete)}>
@@ -34,17 +40,22 @@ function Card({ state, swichhander }) {
         </svg>
       </Button>
       <div onClick={() => ModalButton(state.id)}>
-        <p>{state.author}</p>
-        <Bottom>
+        <p>작성자 : {state.author}</p>
+        <div>
           <Title>{state.title}</Title>
           <Content>{state.contents}</Content>
-        </Bottom>
+        </div>
       </div>
       {ModalOpen === state.id && (
-        <Modalbg setModalopen={setModalOpen} state={state}></Modalbg>
+        <Modal
+          setModalopen={setModalOpen}
+          state={state}
+          delBtn={delBtn}
+          closeBtn={closeBtn}
+        />
       )}
     </Allboxli>
   );
 }
 
-export default Card
+export default Card;

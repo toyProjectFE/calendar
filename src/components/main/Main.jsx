@@ -19,7 +19,7 @@ import "./style.scss";
 import { getSchedules } from "../../axios/api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
-import { addSchedule } from "../../axios/api";
+import { addDate } from "../../axios/api";
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
@@ -57,7 +57,7 @@ const RenderDays = () => {
   return <Days>{days}</Days>;
 };
 
-const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
+const RenderCells = ({ currentMonth, selectedDate }) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -70,7 +70,7 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const mutation = useMutation(addSchedule, {
+  const mutation = useMutation(addDate, {
     onSuccess: () => {
       //
       queryClient.invalidateQueries("schedules");
@@ -94,10 +94,10 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
           key={day}
           onClick={() => {
             let currentDayID = Date.parse(cloneDay);
-            const newSchedule = {
+            const newDate = {
               date: currentDayID,
             };
-            mutation.mutate(newSchedule);
+            mutation.mutate(newDate);
             navigate(`/main/${currentDayID}`);
 
             return console.log(Date.parse(cloneDay));
@@ -125,8 +125,6 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
 const Main = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const { data } = useQuery("products", getSchedules);
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));

@@ -12,7 +12,8 @@ function main() {
         <Main />
       </Layout>
     </>
-  );
+  )
+  
 }
 
 export default main;

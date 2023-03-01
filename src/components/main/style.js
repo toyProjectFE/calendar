@@ -64,7 +64,6 @@ const Days = styled.div`
 const DaysCol = styled.div`
   width: 12.9%;
   height: 100%;
-
   padding-left: 1%;
   background: #ebcfc6;
 `;

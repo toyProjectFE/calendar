@@ -13,7 +13,6 @@ const TOPbox = styled.div`
   justify-content: space-between;
   align-items: center ;
 `
-
 const Tapboxli = styled.li`
   margin-right: 20px;
   font-weight: 500;
@@ -43,14 +42,13 @@ const Tapboxlink = styled.a`
   }
 `;
 const Btnbox = styled.div`
-    overflow-y: scroll;
-    height: 656px;
-    padding: 4px;
-    &::-webkit-scrollbar{
-      width:1px;
-      background:#f8f8f8;
-    }
-`
+  overflow-y: scroll;
+  height: 656px;
+  padding: 4px;
+  &::-webkit-scrollbar{
+  width:1px;
+  background:#f8f8f8;
+  }`
 const Allbox = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -70,7 +68,7 @@ const Allboxli = styled.li`
   border-radius: 10px;
   height: 200px;
   width: 23.4%;
-  padding: 20px;
+  padding: 25px;
   box-sizing: border-box;
   position: relative;
   &:nth-child(4n) {
@@ -83,16 +81,14 @@ const Allboxli = styled.li`
     border: 1px solid #c650f0;
   }
 `;
-const Bottom = styled.div`
-  margin-top:30px;
-`;
+
 const Button = styled.button`
   width: 26px;
   height: 26px;
   border-radius: 26px;
   outline: 0;
   border: 0;
-  line-height: 26px;
+  line-height: 24px;
   position: absolute;
   right:20px;
   top:20px;
@@ -100,9 +96,13 @@ const Button = styled.button`
   &:hover {
     background: #c650f0;
   }
+  &.on{
+    background: #c650f0;
+  }
 `;
 
 const Title = styled.em`
+  margin-top:40px;
   font-weight: 500;
   font-size: 18px;
   line-height: 1;
@@ -123,18 +123,7 @@ const Content = styled.p`
   -webkit-box-orient: vertical;
   
 `;
-const Modalbg = styled.div`
-    background:rgba(0,0,0,0.5);
-    position:fixed;
-    width:100%;
-    height:100%;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    margin:auto;
-    z-index: 99999;
-`
+
 // ----------------------------------여기서부터 오른쪽 등록 관련 css 입니다. ----------------------------------
 
 const Detailbox = styled.div`
@@ -148,7 +137,6 @@ const Rightbg = styled.div`
     display: flex;
     overflow-y: scroll;
     box-sizing: border-box;
-    
     padding: 60px 50px;
     &::-webkit-scrollbar{
         width:1px;
@@ -157,11 +145,11 @@ const Rightbg = styled.div`
 `
 const Rightcenter = styled.form`
 width:100%;
-
 `
 const Box = styled.div`
     margin-top:40px;
     font-size:0;
+    width:100%;
     &:nth-child(1){
         margin-top:0
     }
@@ -222,5 +210,82 @@ const RightButton = styled.button`
     border-radius: 5px;
     margin-top:30px;
     cursor: pointer;
+  `
+
+// -------------------------------------------- 모달 css -------------------------------------
+const Modalbg = styled.div`
+    background:rgba(0,0,0,0.5);
+    position:fixed;
+    width:100%;
+    height:100%;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+    z-index: 99999;
 `
-export {Rightcenter,RightButton,Label,Input,Box,Textarea,Content,Title,Button,Bottom,Allboxli,Allbox,Tapboxlink,Tapboxli,TOPbox,Detaillbg,Btnbox,Detailbox,Rightbg,Modalbg}
+const Modalcon = styled.div`
+  width: 400px;
+  height: 520px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  border-radius: 10px;
+  padding: 40px 40px;
+  overflow: hidden;
+`;
+
+const Modaltitle = styled.em`
+  display: block;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  margin: 20px 0;
+  border-top: 1px solid #eee;
+  padding-top:25px;
+`;
+const Modalbtnwrap = styled.div`
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+`;
+const Modalbtn1 = styled.button`
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 5px;
+  background: #fff;
+  color: #c650f0;
+  border: 1px solid #c650f0;
+  cursor: pointer;
+`;
+const Modalbtn2 = styled.button`
+    width:100px;
+    height:50px;
+    line-height:50px;
+    border-radius:5px;
+    background:#c650f0;
+    color:#fff;
+    margin-left:10px;
+    border:0;
+    cursor: pointer;
+`;
+const Modalbtn3 = styled.button `
+    width:100px;
+    height:50px;
+    line-height:50px;
+    border-radius:5px;
+    background:#f7f7f7;
+    margin-left:10px;
+    border:0;
+    cursor: pointer;
+`
+export {Rightcenter,RightButton,Label,Input,Box,Textarea,Content,Title,Button,Allboxli,Allbox,Tapboxlink,Tapboxli,TOPbox,Detaillbg,Btnbox,Detailbox,Rightbg,Modalbg,Modalcon,Modaltitle,Modalbtnwrap,Modalbtn1,Modalbtn2,Modalbtn3}
