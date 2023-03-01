@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { useMutation, useQueryClient } from 'react-query';
-import { addSchedule } from '../../axios/api';
+import React, { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
+import { addSchedule } from "../../axios/api";
 import { useParams } from "react-router";
+import { useQuery } from "react-query";
 import {
   Rightbg,
   Label,
@@ -11,11 +12,13 @@ import {
   RightButton,
   Rightcenter,
 } from "./style";
+
 function Detiallrightbox() {
   const { id } = useParams();
   const queryClient = useQueryClient();
-  const muraruion = useMutation(addSchedule, {
-    onSuccess: () => {
+  const mutation = useMutation(addSchedule, {
+    onSuccess: (response) => {
+      console.log(response);
       queryClient.invalidateQueries("schedule");
       console.log("성공하였습니다.");
     },
@@ -40,8 +43,8 @@ function Detiallrightbox() {
   const contentsHandler = (e) => {
     setContents(e.target.value);
   };
-  
-  const btnClick = (e)=>{
+
+  const btnClick = (e) => {
     e.preventDefault();
     if (title.trim() === "") {
       alert("제목을 적어주세요");
@@ -59,15 +62,14 @@ function Detiallrightbox() {
       contents: contents,
       date: id,
     };
-    console.log(id)
-    muraruion.mutate(id, newSchedule);
 
-    //state 초기화 
+    mutation.mutate({ id, newSchedule });
+
     setAuthor("");
     setTitle("");
     setContents("");
-  }
-  
+  };
+
   return (
     <Rightbg>
       <Rightcenter onSubmit={btnClick}>
@@ -106,4 +108,4 @@ function Detiallrightbox() {
   );
 }
 
-export default Detiallrightbox
+export default Detiallrightbox;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Calendar = styled.div`
   width: calc(100% - 15.62%);
   height: calc(100% - 80px);
-  border-left:1px solid #eee;
+  border-left: 1px solid #eee;
   position: relative;
 `;
 const ColStart = styled.div`
@@ -16,47 +16,45 @@ const ColStart = styled.div`
 `;
 const Text = styled.p`
   font-size: 25px;
-  font-weight:600;
-  color:#1d1d1d;
-  margin-left:10px;
+  font-weight: 600;
+  color: #1d1d1d;
+  margin-left: 10px;
 `;
 
 const TextMonth = styled.span`
-  margin-left:5px;
+  margin-left: 5px;
 `;
 
 const IconArrow = styled.div`
   cursor: pointer;
-  width:30px;
-  height:30px;
+  width: 30px;
+  height: 30px;
   border-radius: 30px;
   text-align: center;
   line-height: 28px;
-  margin-right:10px;
-  &:hover{
-    background:#f4f4f4;
+  margin-right: 10px;
+  &:hover {
+    background: #f4f4f4;
   }
 `;
-
 
 const Days = styled.div`
   width: 100%;
   height: 40px;
-  text-align:center;
-  line-height: 40px;;
+  text-align: center;
+  line-height: 40px;
   display: flex;
   align-items: center;
-  
 `;
 const DaysCol = styled.div`
   width: 14.28%;
   background: #f7f7f7;
-  border-right:1px solid #eee;
-  &:first-child{
-    color:#ff0000;
+  border-right: 1px solid #eee;
+  &:first-child {
+    color: #ff0000;
   }
-  &:last-child{
-    color:#0038FF
+  &:last-child {
+    color: #0038ff;
   }
 `;
 const BodyRowsWarp = styled.div`
@@ -64,42 +62,41 @@ const BodyRowsWarp = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-`
+`;
 
 const BodyRow = styled.div`
   width: 100%;
-  display:flex;
+  display: flex;
 `;
 
 const Col = styled.div`
-  &.col{
+  &.col {
     width: 14.28%;
     border: 1px solid #eee;
     border-left: 0;
-    border-top:0;
-    padding:15px 15px;
+    border-top: 0;
+    padding: 15px 15px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
   }
-   &.col:first-child{
-    color:#ff0000 ;
+  &.col:first-child {
+    color: #ff0000;
   }
-  &.col:last-child{
-    color:#0038FF ;
+  &.col:last-child {
+    color: #0038ff;
   }
-  &.disabled{
-    color: #bcbcbc !important;
+  &.disabled,.disabled:hover {
+    color: #ebebeb !important;
+    background: #FBFBFB !important;
   }
-  &.selected{
-    background:#f7f7f7 ;
+  &.selected {
+    background: #f7f7f7;
   }
-  &.col:hover{
-    background:#F5E0FD ;
+  &.col:hover {
+    background: #f5e0fd;
   }
-`
-
-
+`;
 
 export {
   Calendar,
@@ -111,5 +108,5 @@ export {
   DaysCol,
   BodyRow,
   BodyRowsWarp,
-  Col
+  Col,
 };

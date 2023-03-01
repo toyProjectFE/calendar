@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Content, Title, Button, Allboxli} from "./style";
-import Modal from './Modal';
+import React, { useState } from "react";
+import { Content, Title, Button, Allboxli } from "./style";
+import Modal from "./Modal";
 function Card({ state, swichhander, delBtn }) {
   const [ModalOpen, setModalOpen] = useState(false);
   const ModalButton = (id) => {
@@ -9,7 +9,7 @@ function Card({ state, swichhander, delBtn }) {
   const closeBtn = () => {
     setModalOpen(false);
   };
-  
+
   // fatchBtn, cancelBtn, retouchBtn;
   return (
     <Allboxli key={state.id}>
@@ -58,4 +58,4 @@ function Card({ state, swichhander, delBtn }) {
   );
 }
 
-export default Card
+export default Card;

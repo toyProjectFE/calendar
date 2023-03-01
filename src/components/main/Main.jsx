@@ -14,9 +14,7 @@ import {
   BodyRowsWarp,
   Col,
 } from "./style";
-
-import { getSchedules } from "../../axios/api";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
 import { addDate } from "../../axios/api";
 
@@ -85,7 +83,7 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
 
 const RenderDays = () => {
   const days = [];
-  const date = ["일", "월", "화", "수", "목", "금", "토"];
+  const date = ["Sun", "Mon", "Thu", "Wed", "Thur", "Fri", "Sat"];
 
   for (let i = 0; i < 7; i++) {
     days.push(<DaysCol key={i}>{date[i]}</DaysCol>);
@@ -109,7 +107,6 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(addDate, {
     onSuccess: () => {
-      //
       queryClient.invalidateQueries("schedules");
     },
   });
@@ -119,7 +116,7 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
       const cloneDay = day;
       days.push(
         <Col
-          className={`col ${
+          className={`col cell ${
             !isSameMonth(day, monthStart)
               ? "disabled"
               : isSameDay(day, selectedDate)
@@ -130,7 +127,7 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
           }`}
           key={day}
           onClick={() => {
-            let currentDayID = Date.parse(cloneDay);
+            let currentDayID = String(Date.parse(cloneDay));
             const newDate = {
               date: currentDayID,
             };
@@ -149,7 +146,7 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
           >
             {formattedDate}
           </span>
-        </Col>
+        </Col>,
       );
       day = addDays(day, 1);
     }

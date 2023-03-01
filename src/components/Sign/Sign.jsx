@@ -14,14 +14,22 @@ import {
 
 import { useMutation, useQueryClient } from "react-query";
 import { addUser } from "../../axios/api";
+import { useNavigate } from "react-router";
 
 function Sign() {
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const mutation = useMutation(addUser, {
-    onSuccess: (data) => {
-      console.log("data", data);
+    onSuccess: () => {
       queryClient.invalidateQueries("user");
+      navigate("/");
+    },
+    onError: (response) => {
+      alert(response.response.data.msg);
+      setUserId("");
+      setUserName("");
+      setUserPw("");
+      setUserPwCheck("");
     },
   });
   const [userId, setUserId] = useState("");

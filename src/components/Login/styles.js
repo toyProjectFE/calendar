@@ -130,6 +130,11 @@ const StyledLabel = styled.label`
   font-weight: 700;
 `;
 
+const SignUpBtn = styled.button`
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+`;
 export {
   LoginTitle,
   Liha,
@@ -142,4 +147,5 @@ export {
   FormContainer,
   Loginbox,
   LabledInput,
+  SignUpBtn,
 };

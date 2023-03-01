@@ -7,10 +7,9 @@ export const setCookie = (name, value, option) => {
 };
 
 export const getCookie = (name) => {
-  return `Bearer ${getCookie("token")}`
-  // cookies.get(name);
+  return cookies.get(name);
 };
 
-setCookie("ACCESS_TOKEN" )
-//, reponse.data.access_token,
-//getCookie("ACCESS_TOKEN")
+export const removeCookie = (name) => {
+  return cookies.remove(name);
+};

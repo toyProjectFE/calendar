@@ -10,20 +10,29 @@ import {
   DivContainer,
   FormContainer,
   LabledInput,
+  SignUpBtn,
 } from "./styles";
 import { useMutation, useQueryClient } from "react-query";
 import { loginUser } from "../../axios/api";
+import { useNavigate } from "react-router";
+import { setCookie } from "../../axios/cookies";
 
 function Login() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
 
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const mutation = useMutation(loginUser, {
-    onSuccess: (data) => {
-      console.log("data", data);
+    onSuccess: (response) => {
+      // console.log(response.headers);
       queryClient.invalidateQueries("user");
+      setCookie("ACCESS_TOKEN", response.headers.authorization);
+      navigate("/main");
+    },
+    onError: (response) => {
+      // console.log(response);
+      alert("로그인정보가 일치하지 않습니다.");
     },
   });
 
@@ -44,7 +53,9 @@ function Login() {
     };
     mutation.mutate(loginUser);
   };
-
+  const gotoSignUp = () => {
+    navigate("/sign");
+  };
   return (
     <MainContainer>
       <StyledDiv>
@@ -60,7 +71,7 @@ function Login() {
             />
 
             <LabledInput
-              id="userId"
+              id="userPw"
               label="비밀번호"
               placeholder="비밀번호를 입력해주세요."
               value={userPw}
@@ -71,7 +82,7 @@ function Login() {
 
             <DivContainer>
               <span>아직 회원 아님?</span>
-              <span>회원가입</span>
+              <SignUpBtn onClick={gotoSignUp}>회원가입</SignUpBtn>
             </DivContainer>
           </FormContainer>
         </form>
