@@ -13,7 +13,7 @@ import {
 } from "./styles";
 
 import { useMutation, useQueryClient } from "react-query";
-import { addUser } from "../../api/api";
+import { addUser } from "../../axios/api";
 
 function Sign() {
   const queryClient = useQueryClient();

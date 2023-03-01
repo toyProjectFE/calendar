@@ -45,10 +45,10 @@ function Detailleftbox() {
   };
   const [openTab, setOpentab] = useState(1);
   const { isLoading, isError, data } = useQuery("schedule", () =>
-    getDetail(id)
+  getDetail(id)
   );
-
   console.log(data)
+  
   if (isLoading) {
     return <h1>"성공했습니다!"</h1>;
   }

@@ -13,7 +13,7 @@ const postMemo = async () => {
 };
 
 const getSchedules = async () => {
-  const response = await instance.get(`/data`);
+  const response = await instance.get(`/date`);
   return response.data;
 };
 
@@ -21,33 +21,31 @@ const getSchedules = async () => {
 
 //해당 날짜 디테일 담은 공간
 const addDate = async (newDate) => {
-await instance.post(`/data`, newDate);
+await instance.post(`/date`, newDate);
 };
 
 //조회 디테일
 const getDetail = async (id) => {
-  console.log(id)
   const response = await instance.get(`/date/${id}`);
   return response.data;
 };
 
 
 //생성 디테일
-const addSchedule = async (newSchedule) => {
-  console.log(newSchedule)
-  await instance.post(`/data/schedule`, newSchedule);
+const addSchedule = async (id, newSchedule) => {
+  console.log(id)
+  await instance.post(`/date/${id}`, newSchedule);
 };
 
 
 //삭제 디테일
 const delSchedule = async (id) => {
-  await instance.delete(`/data/schedule/${id}`);
+  await instance.delete(`/date/${id}`);
 };
 //트루펄스 디테일
 const swichSchedule = async (payload) => {
   console.log(payload)
-  await instance.patch(`/data/schedule/${payload.id}`, {
-    
+  await instance.patch(`/date/${payload.id}`, {
     complete: payload.complete,
   });
 };
@@ -81,4 +79,16 @@ const removeSchedule = async (id, postId) => {
     `${process.env.REACT_APP_SERVER_URL}/schedule/${id}/${postId}`
   );
 };
-export { getSchedules, addSchedule, removeSchedule, getDetail, swichSchedule,delSchedule,addDate };
+
+
+//로그인
+
+const addUser = async (newUser) => {
+  await instance.post(`/user/signup`, newUser);
+};
+
+const loginUser = async (newUser) => {
+  await instance.post(`/user/login`, newUser);
+};
+
+export { getSchedules, addSchedule, removeSchedule, getDetail, swichSchedule,delSchedule,addDate,addUser,loginUser };

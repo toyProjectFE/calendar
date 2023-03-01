@@ -12,7 +12,7 @@ import {
   LabledInput,
 } from "./styles";
 import { useMutation, useQueryClient } from "react-query";
-import { loginUser } from "../../api/api";
+import { loginUser } from "../../axios/api";
 
 function Login() {
   const [userId, setUserId] = useState("");

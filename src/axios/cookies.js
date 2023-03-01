@@ -10,5 +10,6 @@ export const getCookie = (name) => {
   return cookies.get(name);
 };
 
-//setCookie("ACCESS_TOKEN" , reponse.data.access_token,)
+setCookie("ACCESS_TOKEN" )
+//, reponse.data.access_token,
 getCookie("ACCESS_TOKEN")
