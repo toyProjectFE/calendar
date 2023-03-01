@@ -6,10 +6,9 @@ const access_token = getCookie("ACCESS_TOKEN");
 const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
   headers: {
-   //Authorization: access_token
-   // "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "*",
   },
-  // headers: { Authorization: accessToken },
+  header: { Authorization: `Bearer ${access_token}` },
 
 });
 

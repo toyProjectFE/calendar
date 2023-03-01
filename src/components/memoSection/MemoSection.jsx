@@ -9,5 +9,5 @@ export default MemoSection;
 
 const Section = styled.div`
   width: 15.62%;
-  padding-right: 120px;
+  
 `;

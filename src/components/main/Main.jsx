@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import { Icon } from "@iconify/react";
 import { format, addMonths, subMonths } from "date-fns";
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from "date-fns";
 import { isSameMonth, isSameDay, addDays } from "date-fns";
 import {
   Calendar,
-  Header,
   Text,
   ColStart,
   TextMonth,
-  PrevNext,
+  IconArrow,
   Days,
   DaysCol,
-  Body,
   BodyRow,
+  BodyRowsWarp,
+  Col,
 } from "./style";
-import "./style.scss";
+
 import { getSchedules } from "../../axios/api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router";
@@ -23,32 +22,70 @@ import { addDate } from "../../axios/api";
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
-    <Header>
-      <ColStart>
-        <PrevNext>
-          <Icon
-            style={{ cursor: "pointer", transform: "scale(1.3)" }}
-            icon="bi:arrow-left-circle-fill"
-            onClick={prevMonth}
+    <ColStart>
+      <IconArrow onClick={prevMonth}>
+        <svg
+          width="6"
+          height="9"
+          viewBox="0 0 6 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="0.000152588"
+            y="4.24268"
+            width="2"
+            height="6"
+            transform="rotate(-45 0.000152588 4.24268)"
+            fill="#5F6368"
           />
-          <Icon
-            style={{ cursor: "pointer", transform: "scale(1.3)" }}
-            icon="bi:arrow-right-circle-fill"
-            onClick={nextMonth}
+          <rect
+            x="1.41422"
+            y="5.65686"
+            width="2"
+            height="6"
+            transform="rotate(-135 1.41422 5.65686)"
+            fill="#5F6368"
           />
-        </PrevNext>
-        <Text>
-          {format(currentMonth, "yyyy")}
-          <TextMonth>{format(currentMonth, "M")}월</TextMonth>
-        </Text>
-      </ColStart>
-    </Header>
+        </svg>
+      </IconArrow>
+      <IconArrow onClick={nextMonth}>
+        <svg
+          width="6"
+          height="9"
+          viewBox="0 0 6 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="5.99985"
+            y="4.75732"
+            width="2"
+            height="6"
+            transform="rotate(135 5.99985 4.75732)"
+            fill="#5F6368"
+          />
+          <rect
+            x="4.58578"
+            y="3.34314"
+            width="2"
+            height="6"
+            transform="rotate(45 4.58578 3.34314)"
+            fill="#5F6368"
+          />
+        </svg>
+      </IconArrow>
+      <Text>
+        {format(currentMonth, "yyyy")}년
+        <TextMonth>{format(currentMonth, "M")}월</TextMonth>
+      </Text>
+    </ColStart>
   );
 };
 
 const RenderDays = () => {
   const days = [];
-  const date = ["Sun", "Mon", "Thu", "Wed", "Thur", "Fri", "Sat"];
+  const date = ["일", "월", "화", "수", "목", "금", "토"];
 
   for (let i = 0; i < 7; i++) {
     days.push(<DaysCol key={i}>{date[i]}</DaysCol>);
@@ -81,8 +118,8 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
       formattedDate = format(day, "d");
       const cloneDay = day;
       days.push(
-        <div
-          className={`col cell ${
+        <Col
+          className={`col ${
             !isSameMonth(day, monthStart)
               ? "disabled"
               : isSameDay(day, selectedDate)
@@ -112,14 +149,14 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
           >
             {formattedDate}
           </span>
-        </div>
+        </Col>
       );
       day = addDays(day, 1);
     }
     rows.push(<BodyRow key={day}>{days}</BodyRow>);
     days = [];
   }
-  return <Body>{rows}</Body>;
+  return <BodyRowsWarp>{rows}</BodyRowsWarp>;
 };
 
 const Main = () => {

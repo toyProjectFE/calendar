@@ -57,7 +57,7 @@ function Detiallrightbox() {
       title: title,
       author: author,
       contents: contents,
-      //date: id,
+      date: id,
     };
     console.log(id)
     muraruion.mutate(id, newSchedule);
@@ -76,7 +76,7 @@ function Detiallrightbox() {
           <Input
             type="text"
             placeholder="작성자를 적어주세요"
-            maxLength="15"
+            maxLength="30"
             onChange={userAuthorHandler}
             value={author}
           />

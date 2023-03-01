@@ -1,98 +1,115 @@
 import styled from "styled-components";
 
 const Calendar = styled.div`
-  width: 60vw;
-  height: 90vh;
+  width: calc(100% - 15.62%);
+  height: calc(100% - 80px);
+  border-left:1px solid #eee;
+  position: relative;
 `;
-const Header = styled.div`
-  width: 100%;
-  height: 7%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-`;
-
 const ColStart = styled.div`
-  width: 80%;
-  height: 100%;
+  width: 100%;
+  height: 80px;
   display: flex;
   align-items: center;
-  margin-left: 1%;
+  padding-left: 40px;
+  box-sizing: border-box;
 `;
-
-const Text = styled.span`
-  font-size: 1em;
-  margin-left: 50px;
+const Text = styled.p`
+  font-size: 25px;
+  font-weight:600;
+  color:#1d1d1d;
+  margin-left:10px;
 `;
 
 const TextMonth = styled.span`
-  margin-left: 5px;
-  font-size: 1.6em;
-  font-weight: 600;
+  margin-left:5px;
 `;
 
-const PrevNext = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+const IconArrow = styled.div`
+  cursor: pointer;
+  width:30px;
+  height:30px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 28px;
+  margin-right:10px;
+  &:hover{
+    background:#f4f4f4;
+  }
 `;
 
-const ColEnd = styled.div`
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-`;
-const LogoutBtn = styled.button`
-  border: 1px solid black;
-  background-color: transparent;
-  margin-left: 20px;
-`;
+
 const Days = styled.div`
   width: 100%;
-  height: fit-content;
+  height: 40px;
+  text-align:center;
+  line-height: 40px;;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-weight: 600;
-  font-size: 1em;
-  padding: 2px;
+  
 `;
 const DaysCol = styled.div`
-  width: 12.9%;
-  height: 100%;
-  padding-left: 1%;
-  background: #ebcfc6;
+  width: 14.28%;
+  background: #f7f7f7;
+  border-right:1px solid #eee;
+  &:first-child{
+    color:#ff0000;
+  }
+  &:last-child{
+    color:#0038FF
+  }
 `;
-
-const Body = styled.div`
+const BodyRowsWarp = styled.div`
+  height: calc(100vh - 200px);
   width: 100%;
-  height: 89%;
   display: flex;
-  flex-direction: column;
-`;
+  flex-wrap: wrap;
+`
+
 const BodyRow = styled.div`
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display:flex;
 `;
+
+const Col = styled.div`
+  &.col{
+    width: 14.28%;
+    border: 1px solid #eee;
+    border-left: 0;
+    border-top:0;
+    padding:15px 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    cursor: pointer;
+  }
+   &.col:first-child{
+    color:#ff0000 ;
+  }
+  &.col:last-child{
+    color:#0038FF ;
+  }
+  &.disabled{
+    color: #bcbcbc !important;
+  }
+  &.selected{
+    background:#f7f7f7 ;
+  }
+  &.col:hover{
+    background:#F5E0FD ;
+  }
+`
+
+
+
 export {
   Calendar,
-  Header,
   Text,
   ColStart,
   TextMonth,
-  PrevNext,
-  ColEnd,
-  LogoutBtn,
+  IconArrow,
   Days,
   DaysCol,
-  Body,
   BodyRow,
+  BodyRowsWarp,
+  Col
 };

@@ -1,22 +1,22 @@
-.col {
-  width: 13.5%;
-  height: 93%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border: 0.4px solid transparentize(gray, 0.4);
-  border-radius: 3px;
-  font-size: 0.8em;
-  span {
-    margin: 4px 0 0 4px;
-  }
-  .not-valid {
-    color: #686868;
-  }
-  img {
-    opacity: 0.1;
-  }
-}
+// .col {
+//   width: 13.5%;
+//   height: 93%;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   border: 0.4px solid transparentize(gray, 0.4);
+//   border-radius: 3px;
+//   font-size: 0.8em;
+//   span {
+//     margin: 4px 0 0 4px;
+//   }
+//   .not-valid {
+//     color: #686868;
+//   }
+//   img {
+//     opacity: 0.1;
+//   }
+// }
 .col.cell.valid {
   &:hover {
     cursor: pointer;

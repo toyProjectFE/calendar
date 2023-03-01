@@ -4,23 +4,26 @@ import styled from "styled-components";
 const Headerwrap = styled.div`
     height:79px;
     display: flex;
+    line-height: 79px;
     align-items: center;
-    justify-content: space-between;
-    padding:0 50px;
     border-bottom:1px solid #eee;
 `
 
 const Link2 = styled(Link)`
     font-family: 'Gabriela';
     font-size:30px;
-    padding-right:120px;
-    border-right:1px solid #ddd;
-    height:79px;
-    line-height: 79px;
+    width:15.62%;
+    box-sizing: border-box;
+    padding-left:50px
 `
 const Right = styled.div`
+    border-left:1px solid #eee;
     display: flex;
+    box-sizing: border-box;
     align-items: center;
+    padding-right:50px;
+    justify-content: end;
+    width: calc(100% - 15.62%);
 `
 
 const Button = styled.button`
